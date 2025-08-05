@@ -414,7 +414,7 @@
       ]),
     ];
 
-    if (product.price !== product.original_price) {
+    if (product.price !== product.original_price && product.price < product.original_price) {
       const oldPriceContainer = createEl("div");
 
       const oldPriceSpan = createEl(
