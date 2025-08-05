@@ -4,7 +4,7 @@
 
   const state = {
     products: [],
-    favorites: new Set(),
+    favorites: [],
   };
 
   const CONSTANTS = {
@@ -153,9 +153,13 @@
     }
 
     .product-item-carousel:hover{
-        color: #7d7d7d;
+       color: #7d7d7d;
+        cursor: pointer;
+        z-index: 2;
+        box-shadow: 0 0 0 0 #00000030, inset 0 0 0 3px #f28e00;
     }
         
+    
     .product-image {
         width: 100%; 
         height: auto; 
@@ -385,7 +389,7 @@
   };
 
   const crateFavIcon = (node, productId) => {
-    const isFavorite = state.favorites.has(String(productId));
+    const isFavorite = state.favorites.includes(String(productId));
 
     const favoriteIcon = createEl("div", {
       class: `heart ${isFavorite ? "is-favorite":""}`,
@@ -454,7 +458,7 @@
 
   const buildProductCard = (product) => {
     const productItemDiv = createEl("div", { class: "product-item-div" });
-    const productItem = createEl("a", { class: "product-item-carousel", href: product.url, "data-product-id": product.id,});
+    const productItem = createEl("a", { class: "product-item-carousel", href: product.url, "data-product-id": product.id,  target: "_blank",});
    
     //product image
     const imageUrl =product.img || CONSTANTS.images.noImg;
@@ -542,8 +546,9 @@
     try {
       localStorage.setItem(
         CONSTANTS.localStorageKey,
-        JSON.stringify(Array.from(state.favorites))
-      );
+        JSON.stringify(state.favorites)
+    );
+    console.log("🚀 ~ saveFavoritesToLocalStorage ~ state.favorites:", state.favorites)
     } catch (error) {
 
       console.error(CONSTANTS.logs.writeFavoriteProductToLocalError,error);
@@ -553,7 +558,7 @@
   const getFavoritesFromLocalStorage = () => {
     try {
       const favorites = localStorage.getItem(CONSTANTS.localStorageKey);
-      return favorites ? new Set(JSON.parse(favorites)) : new Set();
+      return favorites ? [...JSON.parse(favorites)] :[];
     } catch (error) {
       console.error(CONSTANTS.logs.readFavoriteProductToLocalError, error);
       return new Set();
@@ -631,11 +636,11 @@ const attachEventListeners = () => {
             event.preventDefault(); 
             const productId = favoriteIcon.getAttribute("data-product-id");
 
-            if (state.favorites.has(productId)) {
-                state.favorites.delete(productId);
+            if (state.favorites.includes(productId)) {
+                state.favorites= state.favorites.filter(e=>e !=productId)
                 favoriteIcon.classList.remove("is-favorite");
             } else {
-                state.favorites.add(productId);
+                state.favorites.push(productId);
                 favoriteIcon.classList.add("is-favorite");
             }
             saveFavoritesToLocalStorage();
