@@ -21,7 +21,14 @@
         favoriteIcon: 
             `<svg viewBox="0 0 24 24" fill="none" stroke="#f28e00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>`,
         
+      downArrowSVG :
+         `<div style="width: 20px; height: 20px; display: flex; justify-content: center; align-items: center; border: 2px solid #28a745; clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%); background-color: #28a745;">
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 18L12 6M12 18L16 14M12 18L8 14" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>`,
             },
+
 
 
     images:{
@@ -116,7 +123,6 @@
         border: 1px solid #f28e00;
     }
 
-
     .product-list {
         display: flex;
         overflow-x: auto;
@@ -168,8 +174,6 @@
         object-fit: contain; 
     }
 
-
-
     .product-item-content-div{
         padding: 0 17px 13px 17px;
     }
@@ -178,28 +182,39 @@
         min-height: 55px;
         margin: 10px 0;
         text-overflow: ellipsis;
-        font-family: sans-serif;
+        font-family: Poppins, "cursive";
+        font-size: 1.2rem;
+        font-weight: 500;
+
     }
 
     .product-item-brand {
-        font-weight: bold;
+        font-weight: 700;
     
     }
 
+    .product-item-price_discount-div{
+        display:flex;
+        align-items: center;
+    }
     .product_price{
         position: relative;
         flex-direction: column;
-         margin: 20px 0;
+        margin: 20px 0;
         height: 60px;
         display: flex;
         justify-content: flex-start;
 
     }
-    .product_item_new-price{
+    .product_item-price{
         display: block;
         width: 100%;
         font-size: 2.2rem;
         font-weight: 600;
+    
+    }
+    .product_item_new-price{
+        color: #00a365;
     
     }
 
@@ -210,17 +225,12 @@
     }
 
     .product-discount-percentage {
-        border: 1px solid green;
-        color: white;
-        background-color: green;
-        display: inline-block;
-        width: 55px;
-        height: auto;
-        text-align: center;
-        border-radius: 5px;
-        margin-left: 5px;
-        padding: 2px 5px; 
-        font-size: 12px; 
+        color: #00a365;
+        font-size: 18px;
+        font-weight: 700;
+        display: inline-flex;   
+        justify-content: center;
+        margin: 0 4px 0 6px;
     }
 
     .star-rating {
@@ -293,8 +303,6 @@
             max-width: 1296px;
            
         }
-            
-      
     }
 
     
@@ -412,14 +420,11 @@
 
 
   const createPriceSection = (product) => {
-    const pricesChildren = [
-      createEl("span", { class: "product_item_new-price" }, [
-        `${product.price} TL`,
-      ]),
-    ];
+    const pricesChildren = [];
+    const productPriceChange =product.price !== product.original_price && product.price < product.original_price;
 
-    if (product.price !== product.original_price && product.price < product.original_price) {
-      const oldPriceContainer = createEl("div");
+    if (productPriceChange) {
+      const oldPriceContainer = createEl("div",{class:"product-item-price_discount-div"});
 
       const oldPriceSpan = createEl(
         "span",
@@ -432,16 +437,24 @@
         ((product.original_price - product.price) / product.original_price) *
           100
       );
+
+      const downSvg = createEl( "div" );
+      downSvg.innerHTML=CONSTANTS.itemSvg.downArrowSVG;
+
       const discountPercentageSpan = createEl(
         "span",
         { class: "product-discount-percentage" },
-        [`%${discountPercentage}`]
+        [ ,`%${discountPercentage}`]
       );
       oldPriceContainer.appendChild(discountPercentageSpan);
+      oldPriceContainer.appendChild(downSvg);
 
       pricesChildren.push(oldPriceContainer);
     }
 
+    pricesChildren.push(  createEl("span", { class: `product_item-price ${productPriceChange ?"product_item_new-price":""}` }, [
+        `${product.price} TL`,
+      ]));
     const productItemPrice = createEl("div", {
       class: "product_price",
     });
@@ -548,7 +561,6 @@
         CONSTANTS.localStorageKey,
         JSON.stringify(state.favorites)
     );
-    console.log("🚀 ~ saveFavoritesToLocalStorage ~ state.favorites:", state.favorites)
     } catch (error) {
 
       console.error(CONSTANTS.logs.writeFavoriteProductToLocalError,error);
