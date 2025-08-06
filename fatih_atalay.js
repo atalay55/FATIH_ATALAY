@@ -10,46 +10,45 @@
   const CONSTANTS = {
     storiesLocation: "ins-preview-wrapper",
     carouselTitle: "Beğenebileceğinizi Düşündüklerimiz",
-    wrongPageMessage: "wrong page.",
     productsApiUrl:
-      "https://gist.githubusercontent.com/sevindi/8bcbde9f02c1d4abe112809c974e1f49/raw/9bf93b58df623a9b16f1db721cd0a7a539296cf0/products.json",
+    "https://gist.githubusercontent.com/sevindi/8bcbde9f02c1d4abe112809c974e1f49/raw/9bf93b58df623a9b16f1db721cd0a7a539296cf0/products.json",
     localStorageKey: "favoriteProducts",
     productsLocalStorageKey: "cachedProducts",
     itemSvg:{
-        starSvg :
-            ` <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star"> <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon> </svg>`,
-        favoriteIcon: 
-            `<svg viewBox="0 0 24 24" fill="none" stroke="#f28e00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>`,
-        
+      starSvg :
+      ` <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star"> <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon> </svg>`,
+      favoriteIcon: 
+      `<svg viewBox="0 0 24 24" fill="none" stroke="#f28e00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>`,
+      
       downArrowSVG :
-         `<div style="width: 20px; height: 20px; display: flex; justify-content: center; align-items: center; border: 2px solid #28a745; clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%); background-color: #28a745;">
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 18L12 6M12 18L16 14M12 18L8 14" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>`,
-            },
-
-
-
-    images:{
-        noImg:"https://via.placeholder.com/200x200.png?text=Resim+Yok",
-
+      `<div style="width: 20px; height: 20px; display: flex; justify-content: center; align-items: center; border: 2px solid #28a745; clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%); background-color: #28a745;">
+      <svg width="80" height="80" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 18L12 6M12 18L16 14M12 18L8 14" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      </div>`,
     },
-
+    
+    images:{
+      noImg:"https://via.placeholder.com/200x200.png?text=Resim+Yok",
+      
+    },
+    
     logs:{
-        addCart:"id'li ürün sepete eklendi",
-        writeFavoriteProductToLocalError:"Favoriler yerel depolamaya kaydedilirken hata oluştu",
-        readFavoriteProductToLocalError:"Favoriler yerel depolamaya kaydedilirken hata oluştu",
-        readProductsToLocalError:"Ürünler yerel depolamadan okunurken hata oluştu",
-        writeProductsToLocalError:"Ürünler yerel depolamaya kaydedilirken hata oluştu",
-        existCarouselMessage:"Karusel zaten mevcut.",
-        httpErrorCodeMessage:"HTTP Hata kodu",
-        readProductFromAPIErrorMessage:"Ürünler API'den getirilirken hata oluştu",
-
+      addCart:"id'li ürün sepete eklendi",
+      writeFavoriteProductToLocalError:"Favoriler yerel depolamaya kaydedilirken hata oluştu",
+      readFavoriteProductToLocalError:"Favoriler yerel depolamaya kaydedilirken hata oluştu",
+      readProductsToLocalError:"Ürünler yerel depolamadan okunurken hata oluştu",
+      writeProductsToLocalError:"Ürünler yerel depolamaya kaydedilirken hata oluştu",
+      existCarouselMessage:"Karusel zaten mevcut.",
+      httpErrorCodeMessage:"HTTP Hata kodu",
+      readProductFromAPIErrorMessage:"Ürünler API'den getirilirken hata oluştu",
+      
+      wrongPageMessage: "wrong page.",
     },
 
     commentCount:125
   };
+
 
   const styles = `
     .product-carousel {
@@ -312,7 +311,7 @@
            
         }
               .product-item-div {
-            width: calc((100% / 4) - 14px); /* 3 ürün + aralık */
+            width: calc((100% / 4) - 14px);
         }
       
     }
@@ -322,7 +321,7 @@
             max-width: 960px;
         }
             .product-item-div {
-            width: calc((100% / 3) - 14px); /* 3 ürün + aralık */
+            width: calc((100% / 3) - 14px); 
         }
        
     }
@@ -332,7 +331,7 @@
             max-width: 720px;
         }
           .product-item-div {
-            width: calc((100% / 2) - 14px); /* 3 ürün + aralık */
+            width: calc((100% / 2) - 14px); 
         }
     }
     
@@ -342,7 +341,7 @@
             padding: 10px;
         }
               .product-item-div {
-            width: calc((100% / 2) - 10px); /* 2 ürün + aralık */
+            width: calc((100% / 2) - 10px);
         }
        
         .product-list {
@@ -363,6 +362,7 @@
     }
     `;
 
+  // create document object
   const createEl = (tag, attributes = {}, children = []) => {
     const el = document.createElement(tag);
     for (const key in attributes) {
@@ -378,11 +378,10 @@
     return el;
   };
 
+  // create  stars
   const createStars = (node, count) => {
-
     const starRatingDiv = createEl("div", { class: "star-rating" });
-    const commentsCountLabel = createEl( "span",{}, [`( ${CONSTANTS?.commentCount})`]
-);
+    const commentsCountLabel = createEl( "span",{}, [`( ${CONSTANTS?.commentCount})`]);
     
 
     for (let i = 0; i < count; i++) {
@@ -396,6 +395,8 @@
     node.appendChild(starRatingDiv);
   };
 
+
+  // create fav icon
   const crateFavIcon = (node, productId) => {
     const isFavorite = state.favorites.includes(String(productId));
 
@@ -410,6 +411,7 @@
   };
 
 
+  // create badge part
   const createBadge = (node, productId) => {
     const bestSellerIds = new Set([3, 5, 8]);
 
@@ -419,6 +421,7 @@
   };
 
 
+  // create price section
   const createPriceSection = (product) => {
     const pricesChildren = [];
     const productPriceChange =product.price !== product.original_price && product.price < product.original_price;
@@ -466,9 +469,7 @@
 
 
 
-
-
-
+  // create product car 
   const buildProductCard = (product) => {
     const productItemDiv = createEl("div", { class: "product-item-div" });
     const productItem = createEl("a", { class: "product-item-carousel", href: product.url, "data-product-id": product.id,  target: "_blank",});
@@ -522,7 +523,7 @@
   };
 
 
-
+//create carousel
   const buildCarousel = (products) => {
 
     const productCarousel = createEl("div", { class: "product-carousel" });
@@ -536,10 +537,12 @@
     const productListContainer = createEl("div", {class: "product-list-container"});
     const productList = createEl("div", { class: "product-list" });
 
+    //creating product-card for all products and adding to product list
     products.forEach((product) => {
       productList.appendChild(buildProductCard(product));
     });
 
+    // carousel arrows
     const leftArrow = createEl("div", { class: "carousel-arrow left" });
     const rightArrow = createEl("div", { class: "carousel-arrow right" });
 
@@ -554,6 +557,7 @@
   };
 
 
+// save favorite to the local storage
   const saveFavoritesToLocalStorage = () => {
 
     try {
@@ -567,16 +571,21 @@
     }
   };
 
+
+// get favorite from the  local storage
   const getFavoritesFromLocalStorage = () => {
     try {
+
       const favorites = localStorage.getItem(CONSTANTS.localStorageKey);
       return favorites ? [...JSON.parse(favorites)] :[];
+
     } catch (error) {
       console.error(CONSTANTS.logs.readFavoriteProductToLocalError, error);
-      return new Set();
+      return  [];
     }
   };
 
+  // save product from the  local storage
   const saveProductsToLocalStorage = (products) => {
     try {
       localStorage.setItem(
@@ -588,6 +597,7 @@
     }
   };
 
+  // get product from the  local storage
   const getProductsFromLocalStorage = () => {
     try {
       const products = localStorage.getItem(CONSTANTS.productsLocalStorageKey);
@@ -598,6 +608,8 @@
       return null;
     }
   };
+
+
 
 const attachEventListeners = () => {
     const carouselEl = document.querySelector(".product-carousel");
@@ -631,6 +643,8 @@ const attachEventListeners = () => {
             const currentScrollLeft = productList.scrollLeft;
             const scrollableWidth = productList.scrollWidth - productList.clientWidth;
             
+            
+            productList.scrollBy({ left: scrollAmount, behavior: "smooth" });
             if (currentScrollLeft + scrollAmount >= scrollableWidth) {
                 productList.scrollTo({ left: scrollableWidth, behavior: "smooth" });
             } else {
@@ -660,7 +674,8 @@ const attachEventListeners = () => {
     });
 };
 
-  const init = async () => {
+ 
+const init = async () => {
 
     const existingCarousel = document.querySelector(".product-carousel");
 
@@ -672,7 +687,7 @@ const attachEventListeners = () => {
     const isHomePage = window.location.pathname === "/";
     
     if (!isHomePage) {
-      console.log(CONSTANTS.wrongPageMessage);
+      console.log(CONSTANTS.logs.wrongPageMessage);
       return;
     }
 
@@ -708,11 +723,12 @@ const attachEventListeners = () => {
     const carouselEl = buildCarousel(state.products);
     appendLocation.after(carouselEl);
 
+    // check styles exist then if not add
     const existingStyle = document.querySelector(".carousel-style");
     if (!existingStyle) {
         const styleEl = createEl("style", { class: "carousel-style" }, [styles]);
         document.head.appendChild(styleEl);
-    }
+    } 
 
     attachEventListeners();
 };
